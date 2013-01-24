@@ -109,7 +109,7 @@ function! s:kind.action_table.view.func(candidate)"{{{
 endfunction"}}}
 
 let s:kind.action_table.register = {
-\ 'description' : 'yank to register result',
+\ 'description' : 'yank result to register',
 \ 'is_selectable' : 0,
 \ 'is_quit' : 1,
 \ 'is_invalidate_cache' : 0,
@@ -129,6 +129,7 @@ let s:kind.action_table.yank = {
 \}
 function! s:kind.action_table.yank.func(candidate)"{{{
   let @" = pipecommand#pipe()
+  call pipecommand#clear()
 endfunction"}}}
 
 " local functions {{{
