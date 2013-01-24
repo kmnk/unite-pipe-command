@@ -57,9 +57,9 @@ function! s:source.change_candidates(args, context)
     return []
   endif
   return [{
-\   "word"   : "> add inputed command > " . a:context.input,
+\   "word"   : "> register inputed command > " . a:context.input,
 \   "source" : s:source.name,
-\   "kind"   : s:source.name . '_add',
+\   "kind"   : s:source.name . '_register',
 \   "action__command" : a:context.input,
 \ }]
 endfunction

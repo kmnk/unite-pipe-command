@@ -58,7 +58,7 @@ function! pipecommand#execute(command)"{{{
   execute a:command
 endfunction"}}}
 
-function! pipecommand#add(name, command)"{{{
+function! pipecommand#register(name, command)"{{{
   let s:command_of[a:name] = a:command
   call s:write()
 endfunction"}}}

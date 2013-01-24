@@ -108,27 +108,30 @@ function! s:kind.action_table.view.func(candidate)"{{{
   call pipecommand#clear()
 endfunction"}}}
 
-let s:kind.action_table.register = {
+let s:kind.action_table.yank = {
 \ 'description' : 'yank result to register',
 \ 'is_selectable' : 0,
 \ 'is_quit' : 1,
 \ 'is_invalidate_cache' : 0,
 \ 'is_listed' : 1,
 \}
-function! s:kind.action_table.register.func(candidate)"{{{
+function! s:kind.action_table.yank.func(candidate)"{{{
   call pipecommand#yank(pipecommand#run())
   call pipecommand#clear()
 endfunction"}}}
 
-let s:kind.action_table.yank = {
-\ 'description' : 'yank piped commands',
+let s:kind.action_table.register = {
+\ 'description' : 'register piped commands',
 \ 'is_selectable' : 0,
-\ 'is_quit' : 1,
-\ 'is_invalidate_cache' : 0,
+\ 'is_quit' : 0,
+\ 'is_invalidate_cache' : 1,
 \ 'is_listed' : 1,
 \}
-function! s:kind.action_table.yank.func(candidate)"{{{
-  let @" = pipecommand#pipe()
+function! s:kind.action_table.register.func(candidate)"{{{
+  let name = input("input this command's name: ")
+  let command = pipecommand#pipe()
+  call pipecommand#register(name, command)
+  echo printf('register command "%s" as "%s"', command, name)
   call pipecommand#clear()
 endfunction"}}}
 
