@@ -108,16 +108,27 @@ function! s:kind.action_table.view.func(candidate)"{{{
   call pipecommand#clear()
 endfunction"}}}
 
+let s:kind.action_table.register = {
+\ 'description' : 'yank to register result',
+\ 'is_selectable' : 0,
+\ 'is_quit' : 1,
+\ 'is_invalidate_cache' : 0,
+\ 'is_listed' : 1,
+\}
+function! s:kind.action_table.register.func(candidate)"{{{
+  call pipecommand#yank(pipecommand#run())
+  call pipecommand#clear()
+endfunction"}}}
+
 let s:kind.action_table.yank = {
-\ 'description' : 'yank result',
+\ 'description' : 'yank piped commands',
 \ 'is_selectable' : 0,
 \ 'is_quit' : 1,
 \ 'is_invalidate_cache' : 0,
 \ 'is_listed' : 1,
 \}
 function! s:kind.action_table.yank.func(candidate)"{{{
-  call pipecommand#yank(pipecommand#run())
-  call pipecommand#clear()
+  let @" = pipecommand#pipe()
 endfunction"}}}
 
 " local functions {{{
