@@ -31,10 +31,21 @@ endfunction"}}}
 
 let s:kind = {
 \ 'name' : 'pipecommand',
-\ 'default_action' : 'push',
+\ 'default_action' : 'run',
 \ 'action_table' : {},
 \ 'alias_table' : {},
 \}
+
+let s:kind.action_table.run = {
+\ 'description' : 'run and echo this command',
+\ 'is_selectable' : 0,
+\ 'is_quit' : 1,
+\ 'is_invalidate_cache' : 0,
+\ 'is_listed' : 1,
+\}
+function! s:kind.action_table.run.func(candidate)"{{{
+  echo pipecommand#system(a:candidate.action__command)
+endfunction"}}}
 
 let s:kind.action_table.push = {
 \ 'description' : 'push this command',
