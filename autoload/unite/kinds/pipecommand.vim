@@ -39,8 +39,8 @@ let s:kind = {
 let s:kind.action_table.run = {
 \ 'description' : 'run and echo this command',
 \ 'is_selectable' : 0,
-\ 'is_quit' : 1,
-\ 'is_invalidate_cache' : 0,
+\ 'is_quit' : 0,
+\ 'is_invalidate_cache' : 1,
 \ 'is_listed' : 1,
 \}
 function! s:kind.action_table.run.func(candidate)"{{{
